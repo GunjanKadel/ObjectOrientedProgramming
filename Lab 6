@@ -1,1 +1,146 @@
+1.Create a class distance which stores a distance in feet and inches. Input 2 distance values in objects, add them, store the resultant distance in and object and display it. 
+[Write the above program in two ways. a) store the resultant distance in the calling object:C3.add(C1,C2) b) return the resultant object C3=C1.add(C2)]
+
+Code : 
+a) 
+#include <iostream>
+using namespace std;
+class Distance
+{
+	private:
+		int feet;
+		int inches;
+	public:
+		void get()
+		{
+			cout<<"Enter feet: ";
+			cin>>feet;
+			cout<<"Enter inches: ";
+			cin>>inches;
+		}
+		void show()
+		{
+			cout<<"Feet= "<<feet<<", inches= "<<inches<<endl;
+		}
+		void add(Distance &c1, Distance &c2)
+		{
+			feet = c1.feet + c2.feet;
+			inches = c1.inches + c2.inches;
+			feet = feet + (inches / 12);
+			inches = inches % 12;
+		}
+};
+int main()
+{
+	Distance c1, c2, c3;
+	c1.get();
+	c2.get();
+	c3.add(c1, c2);
+	c3.show();
+	return 0;
+}
+
+
+b) 
+#include <iostream>
+using namespace std;
+class Distance
+{
+	public:
+		int feet;
+		int inches;
+	
+		void get()
+		{
+			cout<<"Enter feet: ";
+			cin>>feet;
+			cout<<"Enter inches: ";
+			cin>>inches;
+		}
+		void show()
+		{
+			cout<<"Distance is feet= "<<feet<<", inches= "<<inches<<endl;
+		}
+		Distance add(Distance d2)
+		{
+		    Distance x;
+			x.feet = feet + d2.feet;
+		    x.inches = inches + d2.inches;
+		   	x.feet = x.feet + (x.inches / 12);
+			x.inches = x.inches % 12;
+			
+			return x;
+		}
+	    
+};
+int main()
+{
+	Distance c1, c2,c3;
+	c1.get();
+	c2.get();
+	c3=c1.add(c2);
+	c3.show();
+	return 0;
+}
+
+2.Write a program in C++ to derive a class “grade” from student which has four subject marks, name and roll number of a student.The “student” class stores the section,age of the student as its private member. Input the details for two students and print all the details with average mark.( The derived class is to be derived in private mode)
+
+Code : 
+
+#include <iostream>
+using namespace std;
+class student
+{ protected :
+  float marks[4];
+  char name[30];
+  int rollno;
+  private :
+  char sec;
+  int age;
+  public:
+  void get()
+  { cout<<"\nEnter the section :";
+    cin>>sec;
+    cout<<"\nEnter age :";
+    cin>>age;
+  }
+  void show()
+  { cout<<"\nSection :"<<sec;
+    cout<<"\nAge : "<<age;
+  }
+};
+class grade : private student
+{ int average =0;
+  int avg;
+  public:
+  void input()
+  { cout<<"\nEnter the name :";
+    cin>>name;
+    cout<<"\nEnter roll no. :";
+    cin>>rollno;
+    get();
+    cout<<"\nEnter the marks of the 4 subjects :";
+    for(int i=0;i<4;i++)
+    { cin>>marks[i];
+      average = average + marks[i];
+    }
+    avg = average/4;
+  }
+  void output()
+  { cout<<"\nName :"<<name;
+    cout<<"\nRoll no. :"<<rollno;
+    show();
+    cout<<"\nAverage of the student :"<<avg;
+  }
+};
+int main()
+{   grade G1,G2;
+    cout<<"Enter Details :";
+    G1.input();
+    G2.input();
+    cout<<"Entered Details :";
+    G1.output();
+    G2.output();
+    return 0;
+}
 
