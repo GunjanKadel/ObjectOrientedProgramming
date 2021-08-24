@@ -1,1 +1,274 @@
+1. WAP to swap private data member of two classes.
+[The classes have no relation with each other].
+
+Code :
+
+#include<iostream>
+using namespace std;
+class b;
+class a
+{
+int x;
+public:
+void assign(int n1)
+{
+x=n1;
+}
+void display()
+{
+cout<<"Value of x is: "<<x<<endl;
+}
+friend void swap(a &,b &);
+};
+class b
+{
+int y;
+public:
+void assign(int n2)
+{
+y=n2;
+}
+void display()
+{
+cout<<"Value of y is: "<<y<<endl;
+}
+friend void swap(a &,b &);
+};
+void swap(a &c,b &d)
+{
+int temp;
+temp =c.x;
+c.x = d.y;
+d.y = temp;
+}
+int main()
+{
+a n;
+b m;
+int a,b;
+cout<<"enter x =";
+cin>>a ;
+cout<<"Enter y =";
+cin>>b;
+n.assign(a);
+m.assign(b);
+swap(n,m);
+n.display();
+m.display();
+}
+
+2.Create two classes which stores distance in feet, inches and meter, centimeter format respectively. Write a function which compares distance in object of these classes and displays the larger one.
+
+Code :   
+
+#include<iostream>
+using namespace std;
+class Distance2;
+class Distance1
+{
+ float meter,centi;
+ public:
+ void get()
+ {
+  cout<<"\nEnter the distance in(meter-centimeter):";
+  cin>>meter>>centi;
+ }
+ void display()
+ {
+  cout<<"\nThe distance is:";
+  cout<<meter<<" meters and "<<centi<<" centimeter";
+ }
+ friend void compare(Distance1 &a,Distance2 &b);
+};
+class Distance2
+{
+ float inch,feet;
+ public:
+ void get()
+ {
+  cout<<"\nEnter the distance in(feet-inch):";
+  cin>>feet>>inch;
+ }
+ void display()
+ {
+  cout<<"\nThe distance is:";
+  cout<<feet<<" feet and "<<inch<<" inch";
+ }
+ friend void compare(Distance1 &a,Distance2 &b);
+};
+void compare(Distance1 &a,Distance2 &b)
+{
+    float c,i,n;
+    c=a.centi+100*a.meter;
+    i=b.inch+12*b.feet;
+    n=i*2.54;
+    if(c>n)
+    cout<<a.meter<<"meter and "<<a.centi<<"centimeter is greater";
+    else if(n>c)
+    cout<<b.feet<<"feet and "<<b.inch<<" inch is greater";
+    else
+    cout<<"both equal";
+    
+} 
+  
+int main()
+{
+ Distance1 a;
+ Distance2 b ;
+ a.get();
+ b.get();
+ compare(a,b);
+ return 0;
+
+
+3.Create a class with an integer data member. Include functions for input and output in class. Count the number of times each function is called and display it.
+
+Code :
+
+#include<iostream>
+using namespace std;
+int i=0,j=0;
+class abc
+{
+    private:
+    int val;
+    public:
+    void get()
+    {
+        cout<<"Enter a value "<<endl;
+        cin>>val;
+        i++;
+    }
+    void show()
+    {
+        cout<<"Value entered : "<<val<<endl;
+        j++;
+    }
+};
+
+int main()
+{
+    abc a[5];
+    for(int i =0;i<5;i++)
+    a[i].get();
+    for(int i =0;i<5;i++)
+    a[i].show();
+    cout<<" Number of times get function was called "<<i<<endl;
+    cout<<" Number of times show function was called "<<j<<endl;
+    
+}
+
+
+4.. Create a class which stores name, roll number and total marks for a student. Input data for n students. Find the average marks scored by n students, store it as a data member of the class and display it using a function which may be called without object.
+
+Code : 
+
+#include <iostream>
+using namespace std;
+#define MAX 10
+ class student
+{
+        char  name[30];
+        int   rollNo;
+        int   total;
+        float avg;
+    public:
+        void get()
+        {
+         cout << "Enter name: "<<endl ;
+         cin >> name;
+         cout << "Enter roll number: "<<endl;
+         cin >> rollNo;
+         cout << "Enter total marks out of 500: "<<endl;
+         cin >> total;
+         avg=(float)total/500;
+        }
+        void put();
+};
+
+void student::put()
+{
+    cout << "Student details:\n"<<endl;
+    cout << "Name:"<<endl<< name <<endl<< "Roll Number:"<<endl << rollNo<<endl << "Total: "<<endl<< total <<endl<< " Average "<<endl << avg;
+}
+ 
+int main()
+{
+    student stu[MAX];       
+    int n,l;
+     
+    cout << "Enter total number of students you want : "<<endl;
+    cin >> n;
+     
+    for(l=0;l< n; l++){
+        cout << "Enter details of the student " << l+1 << ":\n";
+        stu[l].get();
+    }
+     
+    cout << endl;
+     
+    for(l=0;l< n; l++){
+        cout << "\n Details of the student \n " << (l+1) << ":\n";
+        stu[l].put();
+    }
+     
+    return 0;
+}
+
+
+5.Create a class which stores name, author and price of a book. Store information for n number of books. Display information of all the books in a given price range using friend function.
+
+Code : 
+
+#include <iostream>
+using namespace std;
+#define MAX 10
+ class student
+{
+        char  name[30];
+        char author[30];
+        float price;
+    public:
+        void get()
+        {
+         cout << "Enter name: "<<endl ;
+         cin >> name;
+         cout << "Enter author name : "<<endl;
+         cin >> author;
+         cout << "Enter the price: "<<endl;
+         cin >> price;
+        }
+        friend void put(student &);
+};
+
+void put(student &s)
+{
+    cout << "Book details:\n"<<endl;
+    cout << "Name:"<<endl<< s.name<<endl << "Author Name :"<<endl << s.author <<endl<< "Price: "<<endl<< s.price;
+}
+ 
+int main()
+{
+    student stu[MAX];       
+    int n,l;
+     
+    cout << "Enter total number of books you want to enter : "<<endl;
+    cin >> n;
+     
+    for(l=0;l< n; l++){
+        cout << "Enter details of the book " << l+1 << ":\n";
+        stu[l].get();
+    }
+     
+    cout << endl;
+     
+    for(l=0;l< n; l++){
+        cout << "\n Details of the book \n " << (l+1) << ":\n";
+        put(stu[l]);
+    }
+     
+    return 0;
+}
+
+
 
