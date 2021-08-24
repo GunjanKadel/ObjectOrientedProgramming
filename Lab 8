@@ -1,1 +1,366 @@
+1. WAP to overload following operators for class distance, which stores the 
+distance in feet and inches. 
+a)Overload Binary + to add two objects (D3=D1+D2) 
+b)Add an object to an integer, where the integer should be added to the inches value ( D2=4+D1) 
+c)Overload Unary - to show the new sign of values. 
+
+Code :
+
+#include <iostream>
+using namespace std;
+class dis
+   {
+     private:
+        int feet;
+        int inch;
+      public:
+          void get()
+           {
+                cout<<"Enter the distance in feet : ";
+                cin>>feet;
+                cout<<"Enter the distance in inches : ";
+                cin>>inch;
+           }
+          void show()
+          {
+              cout<<"Enter the distance in feet : "<<feet<<endl;
+              cout<<"Enter the distance in inches : "<<inch<<endl;
+          }
+          dis operator+(dis d)
+          {
+              d.feet = d.feet + feet;
+              d.inch = d.inch + inch;
+            return d;
+          }
+          void operator++()
+          {
+              ++feet;
+              ++inch;
+          }
+
+            void operator--()
+          {
+              --feet;
+              --inch;
+          }
+
+          friend dis operator+(int k,dis &d)
+          {
+              d.inch = d.inch + k;
+            return d;
+          }
+    };
+int main()
+{
+    dis D1,D2,D3;
+    cout<<"Enter the values for the distance D1 :"<<endl;
+    D1.get();
+    cout<<"Enter the values for the distance D2 :"<<endl;
+    D2.get();
+    cout<<"Entered values for the distance D1 are :"<<endl;
+    D1.show();
+    cout<<"Entered values for the distance D2 are :"<<endl;
+    D2.show();
+    cout<<"D3 = D1+ D2"<<endl;
+    D3 = D1 + D2;
+    cout<<"Values after operation :"<<endl;
+    D3.show();
+    cout<<"D2 = 4 + D1 ( Adding 4 only to the inches value of D1)"<<endl;
+    D2 = 4 + D1;
+    cout<<"Values after operation :"<<endl;
+    D2.show();
+    cout<<"Overloaded Unary (++) Operator (++D1) "<<endl;
+    ++D1;
+    cout<<"Values after operation :"<<endl;
+    D1.show();
+    cout<<"Overloaded Unary (--)Operator (--D1) "<<endl;
+    --D1;
+    cout<<"Values after operation :"<<endl;
+    D1.show();
+    return 0;
+}
+
+
+2. Create a class to store an integer array. Overload insertion and extraction operator to input and display the array elements. 
+
+Code :
+
+#include <iostream> 
+using namespace std; 
+#define max 5
+class array 
+{   int arr[max];
+    public: 
+    friend istream & operator >> (istream &k,array &s)
+    { 
+       for(int i=0;i<max;i++)
+       k>> s.arr[i]; 
+       return k; 
+    } 
+    friend ostream & operator << (ostream &l,array &s)
+    { 
+       for(int i=0;i<max;i++)
+       l<< s.arr[i]<<endl; 
+       return l; 
+    }
+}; 
+int main() 
+{ 
+   array s1;
+   cout << "Enter elements of array\n"; 
+   cin >> s1; 
+   cout << "The elements of array are\n"; 
+   cout << s1; 
+   return 0; 
+}
+
+
+3. Create a class which a complex number. Add two objects and display the resultant object.Overload the ++ (post and pre) operator for the class. 
+
+Code :
+
+#include<iostream>
+using namespace std;
+class complex
+{   int r;
+    int i;
+    public:
+    void get()
+    {
+        cout<<"Enter real part "<<endl;
+        cin>>r;
+        cout<<"Enter imaginary part "<<endl;
+        cin>>i;
+    }
+    void display()
+    {
+        cout<<""<<r<<"+"<<i<<"i"<<endl;
+    }
+    complex operator++()
+    {
+        complex temp;
+        r++;
+        i++;
+        temp.r=r;
+        temp.i=i;
+        return temp;
+    }
+    complex operator++(int k)
+    {
+      complex temp;
+      ++r;
+      ++i;
+      temp.r=r;
+      temp.i=i;
+      return temp;
+    }
+};
+
+int main()
+{
+    complex c1,c2;
+    c1.get();
+    cout<<"Entered complex number is "<<endl;
+    c1.display();
+    cout<<"After pre increment"<<endl;
+    ++c1;
+    c1.display();
+    cout<<"After post increment"<<endl;
+    c1++;
+    c1.display();
+}
+
+
+4. Create a class which allocates the memory for a string through dynamic constructor. Overload the binary + to concatenate two strings and display it. 
+
+Code :
+
+#include<iostream>
+#include<string.h>
+#include<stdlib.h>
+using namespace std;
+class String
+{
+    char *str;
+    int len;
+    public:
+    String()
+    {
+        len=0;
+        str=new char[len+1];
+    }
+    void display()
+    {
+        cout<<"String is :\t"<<str<<endl;
+    }
+    String(char str1[])
+    {
+        len=strlen(str1);
+        str=new char[len+1];
+        strcpy(str,str1);
+    }
+    String operator+(String s1)
+    {
+        String s;
+        s.len=strlen(str)+strlen(s1.str);
+        s.str=new char[s.len+1];
+        strcpy(s.str,str);
+        strcat(s.str," ");
+        strcat(s.str,s1.str);
+        return s;  
+    }
+};
+int main()
+{
+    char str1[10],str2[10];
+    cout<<"ENTER 1st STRING :\t";
+    cin>>str1;
+    cout<<"ENTER 2nd STRING :\t";
+    cin>>str2;
+    String s1(str1) , s2(str2),s3;
+    s3=s1+s2;
+    s1.display();
+    s2.display();
+    cout<<"After Concatenation:"<<endl;
+    s3.display();
+    return 0;
+}
+
+
+5.WAP to add two objects of time class. Overload the operator ‘==’ to compare two objects and display whether they are equal or not. Overload the assignment operator to assign one 
+property to another and display the time. 
+
+Code :
+
+#include<iostream>
+using namespace std;
+class Time
+{
+    int h,m,s;
+    public:
+    Time()
+    {
+        h=0;
+        m=0;
+        s=0;
+    }
+    void get()
+    {
+      cout << "\n Enter the hour(0-11) ";
+      cin >> h;
+      cout << "\n Enter the minute(0-59) ";
+      cin >> m;
+      cout << "\n Enter the second(0-59) ";
+      cin >> s;
+    }
+    void show()
+    {
+        cout<< h<< ":"<< m<< ":"<< s;
+    }
+    Time operator+(Time t1)
+    {
+       Time t;
+       int a,b;
+       a = s+t1.s;
+       t.s = a%60;
+       b = (a/60)+m+t1.m;
+       t.m = b%60;
+       t.h = (b/60)+h+t1.h;
+       t.h = t.h%12;
+       return t;
+    }
+};
+int main()
+{
+    Time t1,t2,t3;
+    cout << "\n Enter Time 1 ";
+    t1.get();
+    cout << "\n Enter Time 2 ";
+    t2.get();
+    t3 = t1 + t2;	//adding of two time object using '+' operator
+    cout << "\n Time 1 ";
+    t1.show();
+    cout << "\n Time 2 ";
+    t2.show();
+    cout << "\n Sum of the two ";
+    t3.show();
+  return 0;
+}
+
+
+6.WAP to add two objects of distance class. Overload the operator > to compare two objects and return the object with larger time value and display it. Overload the == operator to compare and display whether two given objects contain same distance value. 
+
+Code :
+
+#include<iostream>
+using namespace std;
+class Distance
+{
+    int dis;
+    public:
+    void getdist()
+    {
+        cout<<"Enter the value of distance (in meters) "<<endl;
+        cin>>dis;
+    }
+    void displaydist()
+    {
+        cout<<"Value of distance is "<<dis<<" meters"<<endl;
+    }
+    void operator >(Distance &d)
+    {
+        if(dis>d.dis)
+        {
+            cout<<"Distance 1 is greater than Distance 2\n"<<endl;
+            cout<<"Value of distance is "<<dis<<" meters"<<endl;
+        }
+        else 
+        {
+           cout<<"Distance 2 is greater than Distance 1\n"<<endl;
+           cout<<"Value of distance is "<<d.dis<<" meters"<<endl;
+        }
+    }
+    void operator =(Distance &d)
+    {
+        dis=d.dis;
+    }
+    void operator ==(Distance &d)
+    {
+       if(dis==d.dis)
+       {
+           cout<<"The distance are same\n"<<"The distance is "<<d.dis<<"Meters"<<endl;
+       }
+       else 
+       {
+            cout<<"The distance are not same"<<endl;
+       }
+    }
+};
+int main()
+{
+    Distance d1,d2,d3;
+    int value;
+    cout<<"Enter the distance for d1 :"<<endl;
+    d1.getdist();
+    cout<<"Enter the distance for d2 :"<<endl;
+    d2.getdist();
+    cout<<"Distance for d1 :"<<endl;
+    d1.displaydist();
+    cout<<"Distance for d2 :"<<endl;
+    d2.displaydist();
+    d1>d2;
+    cout<<"Getting new data for distance d3"<<endl;
+    cout<<"Enter the distance for d1 :"<<endl;
+    d3.getdist();
+    cout<<"Distance for d3 :"<<endl;
+    d3.displaydist();
+    cout<<"Assigning the value of d2 in d3"<<endl;
+    d3=d2;
+    cout<<"Re-displaying the d3 "<<endl;
+    d3.displaydist();
+    cout<<"Comparing the value of d3 with d2 and d1 with d2"<<endl;
+    d3==d2;
+    d1==d2;
+    return 0;
+}
 
