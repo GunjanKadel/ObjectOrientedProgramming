@@ -1,0 +1,87 @@
+1.Write a Program To pass an entire array to a function.
+ Print all the elements and Return the largest element
+
+Code :
+
+#include<iostream>
+
+using namespace std; 
+int main()
+{ int array(int[],int);
+  int a[5]={1,2,3,4,5};
+  int d=array(a,5);
+  cout<<endl<<"The largest number of the array is : "<<d;
+  return 0;
+}
+int array(int k[],int l)
+{ int i =0,j,c;
+  cout<<"The numbers of the array are :"<<endl;
+  for(i=0;i<l;i++)
+  { cout<<"\t"<<k[i];
+  }
+  for(i=0;i<l;i++)
+  { 
+     if(k[0]<k[i])
+      k[0]=k[i];
+    
+  }
+  return(k[0]);
+}
+
+
+2.Write a Program To pass a student name,roll no and average marks as function array and print all the details in user defined function
+
+Code :
+
+#include <iostream>
+
+using namespace std;
+int student(int,char[],float);
+int main()
+{   int roll;
+    char name[20];
+    float avg ;
+    cout<<"Enter the roll, name and average marks :";
+    cin>>roll>>name>>avg;
+    student(roll,name,avg);
+    return 0;
+}
+int student(int r, char n[],float a)
+{ cout<<"Entered details are :"<<endl;
+  cout<<"Roll number  :"<<r<<endl;
+  cout<<"Student Name  :"<<n<<endl;
+  cout<<"Average Marks :"<<a<<endl;
+}
+  
+
+3.Write a Program To create a function that calculate rate of interest and return the value to the calling function
+
+Code :
+
+#include <iostream>
+
+using namespace std;
+float simple(float p,float r ,float t)
+{ cout<<"Entered details are :"<<endl;
+  cout<<"Principal  :"<<p<<endl;
+  cout<<"Rate   :"<<r<<endl;
+  cout<<"Time :"<<t<<endl;
+  float s=(p*r*t)/100.0;
+  return(s);
+}
+int main()
+{   float principal ;
+    float rate ;
+    float tim ;
+    float amount;
+    cout<<"Enter the principal, rate and time :";
+    cin>>principal>>rate>>tim;
+    amount = simple(principal,rate,tim);
+    cout<<"Simple Interest :"<<amount<<endl;
+    return 0;
+}
+
+
+
+
+
