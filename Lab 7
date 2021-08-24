@@ -1,1 +1,173 @@
+1.Write a program to create a class students having average marks as it's data member.Create two object and add user defined values entered by user from keyboard and add to both the object separately and display them by overloading binary plus operator and display them.
+
+Code :
+
+#include <iostream>
+using namespace std;
+class student 
+{ float avg;
+  public:
+  void get()
+  { cout<<"\n Enter the average marks : ";
+    cin>>avg;
+  }
+  void show()
+  { cout<<"\n Entered average marks is : "<<avg;
+  }
+  void operator+(int k)
+  { cout<<"\n Overloaded Binary +operator as Member Function";
+      avg=avg+k;
+  }
+  
+};
+int main()
+{  student s1,s2;
+   int m,n;
+   s1.get();
+   s2.get();
+   s1.show();
+   s2.show();
+   cout<<"\n Enter the value to be added in average marks of student 1 :";
+   cin>>m;
+   cout<<"\n Enter the value to be added in average marks of student 2 :";
+   cin>>n;
+   s1+m;
+   s1.show();
+   s2+n;
+   s2.show();
+   return 0;
+}
+
+
+2.Write a program to create a class students having average marks as it's data member.Create two object and add user defined values entered by user from keyboard and add to both the object separately and display them by overloading binary plus operator and display them.Perform using friend function 
+
+Code :
+
+#include <iostream>
+using namespace std;
+class student 
+{ float avg;
+  public:
+  void get()
+  { cout<<"\n Enter the average marks : ";
+    cin>>avg;
+  }
+  void show()
+  { cout<<"\n Entered average marks is : "<<avg;
+  }
+  friend void operator+(student,int);
+};
+void operator+(student s,int k)
+  { cout<<"\n Overloaded Binary +operator as Friend Function";
+      s.avg=s.avg+k;
+      s.show();
+  }
+int main()
+{  student s1,s2;
+   int m,n;
+   s1.get();
+   s2.get();
+   s1.show();
+   s2.show();
+   cout<<"\n Enter the value to be added in average marks of student 1 :";
+   cin>>m;
+   cout<<"\n Enter the value to be added in average marks of student 2 :";
+   cin>>n;
+   s1+m;
+   s2+n;
+   return 0;
+}
+
+
+3.  .Write a program to create a class students having average marks as it's data member.Add these properties of one object to another object by using member and friend function and display them
+
+Code : 
+
+#include <iostream>
+using namespace std;
+class student 
+{ float avg;
+  public:
+  void get()
+  { cout<<"\n Enter the average marks : ";
+    cin>>avg;
+  }
+  void show()
+  { cout<<"\n Entered average marks is : "<<avg;
+  }
+  void operator+(student k)
+  { cout<<"\n Overloaded Binary +operator as Member Function";
+      avg=avg+k.avg;
+  }
+  friend void operator-(student,student);
+};
+void operator-(student s1,student s3)
+{  cout<<"\n Overloaded Binary +operator as Friend Function";
+    s3.avg=s1.avg+s3.avg;
+    s3.show();
+}
+int main()
+{  student s1,s2,s3;
+   int m,n;
+   cout<<"\nTaking the values for three objects ";
+   s1.get();
+   s2.get();
+   s3.get();
+   s1.show();
+   s2.show();
+   s3.show();
+   cout<<"\nAdding the properties of student 1 to student 2";
+   s2+s1;
+   s2.show();
+   cout<<"\nAdding the properties of student 1 to student 3";
+   s3-s1;
+   return 0;
+}
+
+
+4. Write a program to create a class students having average marks as it's data member. Overload binary plus operator to add two objects and store results to another object using member and friend function
+
+Code : 
+
+#include <iostream>
+using namespace std;
+class student 
+{ float avg;
+  public:
+  void get()
+  { cout<<"\n Enter the average marks : ";
+    cin>>avg;
+  }
+  void show()
+  { cout<<"\n Entered average marks is : "<<avg;
+  }
+  student operator+(student k)
+  { cout<<"\n Overloaded Binary +operator as Member Function";
+      k.avg=avg+k.avg;
+  }
+  friend student operator-(student,student);
+};
+student operator-(student s1,student s2)
+{   cout<<"\n Overloaded Binary +operator as Friend Function";
+    s1.avg=s1.avg+s2.avg;
+    return s1;
+}
+int main()
+{  student s1,s2,s3,s4,s5;
+   int m,n;
+   cout<<"\nTaking the values for three objects ";
+   s1.get();
+   s2.get();
+   s3.get();
+   s1.show();
+   s2.show();
+   s3.show();
+   cout<<"\nAdding the properties of student 1 and student 2 and saving the values in student 4 ";
+   s4 = s2+s1;
+   s4.show();
+   cout<<"\nAdding the properties of student 1 and student 3 and saving the values in student 5 ";
+   s5 = s3-s1;
+   s5.show();
+   return 0;
+}
 
