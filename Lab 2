@@ -37,7 +37,7 @@ void area(float s)
 }
 
 
-3. Write a program to allocate n spaces dynamically to allocate for integers. Enter values and find the sum and average. The value of n is enter by user from keyboard.
+2. Write a program to allocate n spaces dynamically to allocate for integers. Enter values and find the sum and average. The value of n is enter by user from keyboard.
 
 Code :
 
