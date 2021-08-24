@@ -1,1 +1,145 @@
+1.Write a program  in c++to create a class to show the use of static and non static data members and member functions.
 
+Code :
+
+#include <iostream>
+
+using namespace std;
+class student 
+{ int roll;
+  static int age ;
+  public: 
+  void get()
+  {cout<<"\nEnter the roll no.:";
+   cin>>roll;
+  }
+  void show();
+  static void show1();
+}s1;
+int student :: age=18;
+void student :: show()
+{ cout<<"The function is non static"<<endl;
+  cout<<"Entered roll no :"<<roll<<endl;
+  cout<<"The static variable has age stored as  :"<<age<<endl;
+}
+void student :: show1()
+{ cout<<"The function is static and can only access static members of the class i.e. age "<<endl;
+  cout<<"The static variable has age stored as  :"<<age<<endl;
+}
+int main()
+{ student s2,s3;
+  cout<<"Enter the details :"<<endl;
+  s1.get();
+  s2.get();
+  s3.get();
+  cout<<"Entered Details are ;"<<endl;
+  s1.show();
+  s2.show();
+  s3.show();
+  s1.show1();
+  s2.show1();
+  s3.show1();
+     return 0;
+}
+
+
+2.Write a program in C++to create a class to show overloading of member functions where make one member function as online and another as non online.
+
+Code :
+
+#include <iostream>
+
+using namespace std;
+class student 
+{ int roll;
+  static int age ;
+  public: 
+  void get()
+  {cout<<"\nEnter the roll no.:";
+   cin>>roll;
+  }
+  void show();
+  static void show1();
+  void show(char);
+}s1;
+int student :: age=18;
+void student :: show()
+{ cout<<"The function is non static"<<endl;
+  cout<<"Entered roll no :"<<roll<<endl;
+  cout<<"The static variable has age stored as  :"<<age<<endl;
+}
+void student :: show1()
+{ cout<<"The function is static and can only access static members of the class i.e. age "<<endl;
+  cout<<"The static variable has age stored as  :"<<age<<endl;
+}
+void student :: show(char ch)
+{ cout<<"The function is non static and to show function overloading"<<endl;
+  cout<<"Entered roll no :"<<roll<<endl;
+  cout<<"The static variable has age stored as  :"<<age<<endl;
+  cout<<"Entered charcter as an argument is  :"<<ch<<endl;
+}
+int main()
+{ student s2,s3;
+char ch;
+  cout<<"Enter the details :"<<endl;
+  s1.get();
+  s2.get();
+  s3.get();
+  cout<<"Entered Details are ;"<<endl;
+  s1.show();
+  s2.show();
+  s3.show();
+  s1.show1();
+  s2.show1();
+  s3.show1();
+  cout<<"Enter a character :";
+  cin>>ch;
+  s1.show(ch);
+  s2.show(ch);
+  s3.show(ch);
+     return 0;
+}
+
+3.Write a program to create a class student  having roll, and 5 subject marks. Input and display the details of two students along with average mark.
+
+Code :
+
+#include <iostream>
+using namespace std;
+class student 
+{ int roll;
+  int marks[5] ;
+  public: 
+  void get()
+  {cout<<"\nEnter the roll no.:";
+   cin>>roll;
+   cout<<"\nEnter the marks of 5 subjects :";
+   for(int i = 0;i<5;i++)
+   { cin>>marks[i];
+   }
+  }
+  void show();
+}s1;
+void student :: show()
+{  int sum=0;float avg=0;
+    cout<<"\nEntered roll no.:";
+   cout<<roll;
+   cout<<"\nEntered marks of 5 subjects :";
+   for(int i = 0;i<5;i++)
+   { cout<<marks[i]<<endl;
+   sum=sum +marks[i];
+   }
+   avg=sum/5;
+   cout<<"\nAverage marks is"<<avg<<endl;
+}
+int main()
+{ student s2;
+  cout<<"Enter the details :"<<endl;
+  s1.get();
+  s2.get();
+  cout<<"Entered Details are :"<<endl;
+  s1.show();
+  s2.show();
+
+     return 0;
+}
