@@ -1,1 +1,226 @@
 
+1.Create a class complex which stores real and imaginary part of a complex number.Include all types of constructors and destructor. The destructor should display a message about the destructor being invoked. Create objects using different constructors and display them. 
+
+Code :
+
+#include<iostream>
+using namespace std;
+class Complex
+{
+    float r;
+    float i;
+public:
+    Complex()
+    {
+        cout<<"User Defined constructor";
+        cout<<"\n The real and imaginary parts of the number is initialized to 0";
+        r=0;
+        i=0;
+        cout<<endl<<r<<" + i"<<i<<endl;
+    }
+    Complex(float x, float y)
+    {
+        cout<<"\nParameterized constructor";
+        r=x;
+        i=y;
+        cout<<endl<<r<<" + i"<<i<<endl;
+    }
+    Complex (Complex &t)
+    {
+        cout<<"\nCopy constructor";
+        r=t.r;
+        i=t.i;
+        cout<<endl<<r<<" + i"<<i<<endl;
+    }
+    ~Complex()
+    {
+        cout<<"\nDestroying Object";
+    }
+
+};
+int main()
+{   Complex c1;
+    int x,y;
+    cout<<"Enter the real value"<<endl;
+    cin>>x;
+    cout<<"Enter the imaginary value"<<endl;
+    cin>>y;
+    Complex c2(x,y);
+    Complex c3(c2);
+}
+
+
+2. Create a class which stores time in hh:mm format. Include all the constructors. The parameterized constructor should initialize the minute value to zero, if it is not 
+provided. 
+
+Code :
+
+#include <iostream>
+using namespace std;
+class Time
+{
+    int h,m;
+public:
+    Time()
+    {
+        cout<<"User defined constructor"<<endl;
+        cout<<"\nThe variables of the class is first initialized to 0"<<endl;
+        h=0;
+        m=0;
+        cout<<endl<<h<<" hrs "<<m<<" mins"<<endl;
+    }
+    Time(int x, int y=0)
+    {
+        cout<<"\nParameterized constructor";
+        h=x;
+        m=y;
+        cout<<endl<<h<<" hrs "<<m<<" mins"<<endl;
+    }
+    Time (Time &t)
+    {
+        cout<<"\nCopy constructor";
+        h=t.h;
+        m=t.m;
+        cout<<endl<<h<<" hrs "<<m<<" mins"<<endl;
+    }
+    ~Time()
+    {
+        cout<<"\nDestructor";
+    }
+};
+int main()
+{
+    Time t1;
+    int x,y,z;
+    cout<<"\nEnter the hours value"<<endl;
+    cin>>x;
+    cout<<"\nEnter the minutes value"<<endl;
+    cin>>y;
+    Time t2(x,y);
+    cout<<"\nIf only hours is asked from the user";
+    cout<<"\nEnter the hours value"<<endl;
+    cin>>z;
+    Time t3(z);
+    Time t4(t3);
+
+    return 0;
+}
+
+3. Create a class which stores a string and its length as data members. Include all the constructors. Include a member function to join two strings and display the concatenated string. 
+
+Code :
+
+#include <iostream>
+using namespace std;
+class store
+{
+    string s;
+    int length;
+public:
+     store()
+    {
+        cout<<"\n User Defined constructor";
+        s="User Defined constructor";
+        length= s.length();
+        cout<<endl<<s<<" : "<<length;
+    }
+    store(string x)
+    {
+        cout<<"\nParameterized constructor";
+        s=x;
+        length= s.length();
+        cout<<endl<<s<<" : "<<length;
+    }
+    store (store &t)
+    {
+        cout<<"\nCopy constructor ";
+       s=t.s;
+       length= s.length();
+        cout<<endl<<s<<" : "<<length;
+    }
+    void join(store s2)
+    {
+        s=s+s2.s;
+        length= s.length();
+        cout<<endl<<s<<" : "<<length;
+    }
+    ~store()
+    {
+      cout<<"\nDestructor " ; 
+    }
+
+};
+int main()
+{
+    store s1;
+    string h;
+    cout<<"\nEnter a string";
+    cin>>h;
+    store s2(h);
+    store s3(s1);
+    s3.join(s2);
+
+    return 0;
+}
+
+4. WAP to demonstrate the order of call of constructors and destructors for a class.
+
+Code :
+
+#include <iostream>
+using namespace std;
+class ord
+{
+public :
+    ord()
+    {
+        cout<<"\nConstructor ";
+    }
+    ord (ord &t)
+    {
+        cout<<"\nCopy constructor ";
+    }
+    ~ord()
+    {
+        cout<<"\nDestructor";
+    }
+};
+int main()
+{   
+    {ord o1;}
+    ord o2;
+    ord o3(o2);
+    return 0;
+}
+
+
+5. WAP to count number of objects created from a class using concept of static data members and static member function.
+
+Code :
+
+#include <iostream>
+using namespace std;
+class objc
+{
+    static int c;
+public :
+    objc()
+    {
+        c++;
+    }
+    static void dis_c()
+    {
+        cout<<"\nNumber of objects created is/are : "<<c;
+    }
+};
+int objc::c=0;
+int main()
+{
+    objc a;
+    objc b;
+    objc c[5];
+    objc::dis_c();
+
+    return 0;
+}
+
