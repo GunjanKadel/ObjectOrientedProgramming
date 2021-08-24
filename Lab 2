@@ -1,0 +1,70 @@
+1.Write a program to overload the function area to compute area of rectangle, circle and square
+
+Code :
+
+#include <iostream>
+
+using namespace std;
+void area(float,float);
+void area(float,char);
+void area(float);
+int main()
+{ float l,b,r,s;
+  cout<<"Enter the length of the rectangle :";
+  cin>>l;
+  cout<<"Enter the breadth of the rectangle :";
+  cin>>b;
+  area(l,b);
+  cout<<"Enter the radius of the circle :";
+  cin>>r;
+  area(r,'k');
+  cout<<"Enter the side of the square :";
+  cin>>s;
+  area(s);
+  return 0;
+}
+void area(float l,float b)
+{ float area = l*b;
+  cout<<"The Area of the rectangle :"<<area<<endl;
+}
+void area(float r,char c)
+{ float area = 3.14159*r*r;
+  cout<<"The Area of the circle :"<<area<<endl;
+}
+void area(float s)
+{ float area = s*s;
+  cout<<"The Area of the square :"<<area<<endl;
+}
+
+
+3. Write a program to allocate n spaces dynamically to allocate for integers. Enter values and find the sum and average. The value of n is enter by user from keyboard.
+
+Code :
+
+#include<iostream>
+using namespace std;
+
+int main()
+{   
+    int l,sum=0;
+    cout<<"enter how many values you want?";
+    cin>>l;
+    int *p=new int[l],i;
+
+    for (i=0; i<l; i++)
+    {
+     cout<<"enter value";
+     cin>> *(p+i);
+    }
+    
+     for(i=0;i<l;i++)  
+    {
+       sum=sum+p[i];
+    }
+    
+    cout << "sum= " << sum<<endl;
+    cout<<" avg= "<<(float)sum/l;
+    return 0;
+   
+}
+
